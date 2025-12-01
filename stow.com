@@ -1,0 +1,1 @@
+stow -d ~/dotfiles/arch-hyprland-rice/ -t ~/ dots
