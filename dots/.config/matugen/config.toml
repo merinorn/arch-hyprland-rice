@@ -36,6 +36,7 @@ input_path = '~/.config/matugen/templates/kitty-colors.conf'
 output_path = '~/.config/kitty/colors.conf'
 post_hook = 'pkill -SIGUSR1 kitty'
 
-[templates.vesktop]
-input_path = '~/.config/matugen/templates/midnight-discord.css'
-output_path = '~/.config/vesktop/themes/midnight-discord.css'
+[templates.mako]
+input_path = '~/.config/matugen/templates/mako'
+output_path = '~/.config/mako/mako-colors'
+post_hook = 'makoctl reload'
