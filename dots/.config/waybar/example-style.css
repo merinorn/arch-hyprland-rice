@@ -1,40 +1,15 @@
-/* @import "colors.css"; --> matugen, pywal has better colorpicker ig */
 @import url('../../.cache/wal/colors-waybar.css');
 
+https://github.com/elifouts/Dotfiles
 
 * {
+    font-size:15px;
+    // font-family: "CodeNewRoman Nerd Font Propo";
     font-family: "JetBrainsMono Nerd Font Propo";
-    font-weight: bold;
-    /* font-size: 98%; */
-    font-size: 14;
-    /* min-height: 0;
-    margin: 0;
-    padding: 0; */
 }
-
-/* window#waybar {
-    background: transparent;
-} */
-
 window#waybar{
     all:unset;
 }
-
-/* tooltip {
-    color: @inverse_surface;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 20px;
-} */
-
-tooltip {
-    background:@background;
-    color: @color7;
-}
-
-tooltip label {
-    color: @inverse_surface;
-}
-
 .modules-left {
     padding:7px;
     margin:10 0 5 10;
@@ -56,26 +31,30 @@ tooltip label {
     background: alpha(@background,.6);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
 }
-/*-----Modules-----*/
-/* #workspaces button.active {
-    min-width: 50px;
-    color: @primary; --> was commented out
-    color: #000000;
-    background: alpha(@primary_fixed, 0.75);
-    border-radius: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
+tooltip {
+    background:@background;
+    color: @color7;
 }
+#clock:hover, #custom-pacman:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover{
+    transition: all .3s ease;
+    color:@color9;
+}
+#custom-notification {
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color:@color7;
+}
+#clock{
+    padding: 0px 5px;
+    color:@color7;
+    transition: all .3s ease;
+}
+#custom-pacman{
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color:@color7;
 
-#workspaces button {
-    transition: all 200ms ease-in-out;
-    padding: 0 5px;
-    margin: 0 2px;
-    color: @secondary;
-    background: @secondary;
-    border-bottom: 3px solid transparent;
-} */
-
+}
 #workspaces {
     padding: 0px 5px;
 }
@@ -112,46 +91,30 @@ tooltip label {
     border: none;
     text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
 }
-
-#clock {
-    font-weight: 700;
-    color: #e8eaed;
-}
-
-/* #group-player {
-    background-color: @secondary;
-    border-radius: 16px 100px 100px 16px;
-    padding: 0 16px;
-} */
-
-/* #tray {
-    padding: 2px;
-    background: @secondary;
-    border-radius: 100px 16px 16px 100px;
-} */
-#tray{
-    padding: 0px 5px;
-    transition: all .3s ease; 
-
-}
-
-#custom-pacman{
+#bluetooth{
     padding: 0px 5px;
     transition: all .3s ease;
     color:@color7;
 
 }
+#network{
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color:@color7;
+
+}
+#pulseaudio{
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color:@color7;
+
+}
+#battery{
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color:@color7;
 
 
-/*-----Indicators-----*/
-#battery,
-#network,
-#pulseaudio,
-#custom-power {
-    background-color: @secondary;
-    padding: 0 5px;
-    /* margin: 0 5px; */
-    /* border-radius: 5px; */
 }
 #battery.charging {
     color: #26A65B;
@@ -169,6 +132,22 @@ tooltip label {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-#pulseaudio {
-    margin: 0 2px;
+#custom-endpoint{
+    color:transparent;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
+
+}
+#tray{
+    padding: 0px 5px;
+    transition: all .3s ease; 
+
+}
+#tray menu * {
+    padding: 0px 5px;
+    transition: all .3s ease; 
+}
+
+#tray menu separator {
+    padding: 0px 5px;
+    transition: all .3s ease; 
 }

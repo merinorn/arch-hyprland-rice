@@ -1,24 +1,76 @@
 {
     "layer": "top",
-    // "margin-top": 10, // changed position to bottom
-    "margin-bottom": 10,
-    "width": 1500,
-    "position": "bottom",
-    "modules-left": ["hyprland/workspaces", "sway/mode"],
-    "modules-center": ["clock"],
-    "modules-right": ["battery", "pulseaudio", "network"],
+    "margin-top": 5, //10 before
+    "width": 1580, // 1500 for 1.25 scale
+    "position": "top",
+    "modules-left": ["clock", "custom/pacman","tray"],
+    "modules-center": ["hyprland/workspaces", "sway/mode"],
+    "modules-right": ["battery", "pulseaudio", "network", "custom/power"],
     "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "interval":30,
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 20
+            },
+            "format": "{capacity}% {icon}",
+            "format-charging": "{capacity}% 󰂄",
+            "format-plugged": "{capacity}% 󰂄 ",
+            "format-alt": "{time} {icon}",
+            "format-icons": [
+                "󰁻",
+            "󰁼",
+            "󰁾",
+            "󰂀",
+            "󰂂",
+            "󰁹"
+            ],
+        // "format-icons": ["", "", "", "", ""]
     },
+    "custom/pacman": {
+            "format": "󰅢 {}",
+            "interval": 30,   
+            "exec": "checkupdates | wc -l",
+            "exec-if": "exit 0",
+            "on-click": "kitty sh -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+            "signal": 8,
+            "tooltip": false,
+        },
+        "custom/expand": {
+            "format": "",
+            "tooltip": false
+        },
+        "custom/endpoint":{
+            "format": "|",
+            "tooltip": false
+    },
+    "custom/power": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+    // "clock": {
+    //     "format-alt": "{:%a, %d %b %I:%M %p}",
+    //     "format": "{:%I:%M %p}",
+    //     "calender": {
+    //         "mode": "month",
+    //         "weeks-pos": "right",
+    //         "on-scroll": 1
+	// }
+    // },
     "clock": {
-        "format-alt": "{:%a, %d %b %I:%M %p}",
-        "format": "{:%I:%M %p}",
-        "calender": {
-            "mode": "month",
-            "weeks-pos": "right",
-            "on-scroll": 1
-	}
+            "format": "{:%I:%M:%S %p} ",
+            "interval": 1,   
+            "tooltip-format": "<tt>{calendar}</tt>",
+            "calendar": {
+                "format": {
+                    "today": "<span color='#fAfBfC'><b>{}</b></span>"
+                }
+            },
+            "actions": {
+                "on-click-right": "shift_down",
+                "on-click": "shift_up"
+            }
     },
     "pulseaudio": {
 	    "format": "{volume}% {icon}",
@@ -41,7 +93,7 @@
     "network": {
     "interface": "wlan0",
     "format": "{ifname}",
-    "format-wifi": "  {signalStrength}%",
+    "format-wifi": " ", // {signalStrength}% was also added before
     "format-ethernet": "{ipaddr}/{cidr} 󰊗",
     "format-disconnected": "", //An empty format will hide the module.
     "tooltip-format": "{ifname} via {gwaddr} 󰊗",
@@ -50,11 +102,27 @@
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50
     },
+    "tray": {
+            "icon-size": 14,
+            "spacing": 10
+    },
+    
+    // "hyprland/workspaces": {
+	// "format": "{name}",
+    //    "persistent-workspaces": {
+    //          "*": 4
+    //    }
+    // }   my conf
     
     "hyprland/workspaces": {
-	"format": "{name}",
-       "persistent-workspaces": {
-             "*": 5
-       }
-    }
+            "format": "{icon}",
+            "format-icons": {
+                "active": "",
+                "default": "",
+                "empty": ""
+            },
+            "persistent-workspaces": {
+                "*": [ 1,2,3,4 ]
+            }
+        }
 }
