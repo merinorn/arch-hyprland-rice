@@ -13,7 +13,7 @@
         }
         // "padding": {
         //     "top": 1
-        // }
+        // } // for arch logo builtin
     },
     "display": {
         "separator": " "
