@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Function to get the default Pictures directory
 get_pictures_dir() {
   if command -v xdg-user-dir &>/dev/null; then
     xdg-user-dir PICTURES
@@ -21,30 +20,33 @@ get_pictures_dir() {
   echo "$HOME/Pictures"
 }
 
-# Directory setup
-PICTURES_DIR=$(get_pictures_dir)
-mkdir -p "$PICTURES_DIR/Wallpapers"
+WALLPAPER_DIR=$(get_pictures_dir)
+SYMLINK_PATH="$HOME/.config/hypr/current_wallpaper"
+mkdir -p "$WALLPAPER_DIR"
 
-# Get random seasonal background from osu!
+# Fetch random wallpaper from osu!
 response=$(curl -s "https://osu.ppy.sh/api/v2/seasonal-backgrounds")
 images=$(echo "$response" | jq '.backgrounds | length' -r)
 randomIndex=$((RANDOM % images))
 link=$(echo "$response" | jq ".backgrounds[$randomIndex].url" -r)
 
-# Check if the link is valid
+# Validate the link
 if [ -z "$link" ]; then
   echo "Error: Unable to fetch the wallpaper link."
   exit 1
 fi
 
-# Determine the file extension and download path
+# Determine download path
 ext=${link##*.}
-downloadPath="$PICTURES_DIR/Wallpapers/random_wallpaper.$ext"
+downloadPath="$WALLPAPER_DIR/random_wallpaper.$ext"
 
 # Download the wallpaper
 curl -s "$link" -o "$downloadPath"
 
-# Set the wallpaper using swww
-# swww img "$downloadPath" --transition-type any
+# Set the wallpaper
 wal -i "$downloadPath"
 matugen image "$downloadPath"
+
+# Create/update symlink for the current wallpaper
+mkdir -p "$(dirname "$SYMLINK_PATH")"
+ln -sf "$downloadPath" "$SYMLINK_PATH"
